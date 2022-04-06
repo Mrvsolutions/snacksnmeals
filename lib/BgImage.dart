@@ -9,7 +9,7 @@ class BgImage extends StatelessWidget {
       child: Align(
         alignment: Alignment.center,
         child: Image.asset(
-          "assets/bg_img.jpeg",
+          "assets/bg_img.png",
           fit: BoxFit.cover,
           height: double.infinity,
           width: double.infinity,

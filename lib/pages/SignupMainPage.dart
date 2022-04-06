@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:snacksnmeals/BgImage.dart';
+import 'package:snacksnmeals/pages/CreateAccountPage.dart';
 
 class SignupMainPage extends StatefulWidget {
   _SignupMainPageState createState() => _SignupMainPageState();
@@ -29,6 +30,29 @@ class _SignupMainPageState extends State<SignupMainPage> {
                   ),
                   child: Column(
                     children: [
+                      SizedBox(
+                        height: 50,
+                      ),
+                      Container(
+                        height: 60.0,
+                        width: 60.0,
+                        child: Image.asset(
+                          "assets/ic_chef.png",
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        child: Text(
+                          "GOOD MEALS",
+                          style: TextStyle(
+                              color: Colors.orange,
+                              fontSize: 28,fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
                       Expanded(
                         child: Center(
                           child: Padding(
@@ -57,7 +81,12 @@ class _SignupMainPageState extends State<SignupMainPage> {
                             height: 45,
                             child: RaisedButton(
                               onPressed: () {
-                                FocusScopeNode currentFocus = FocusScope.of(context);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          CreateAccountPage()),
+                                );
                               },
                               child: Text("Create Account"),
                               color: Colors.orange,
@@ -93,7 +122,7 @@ class _SignupMainPageState extends State<SignupMainPage> {
                                     style: TextStyle(
                                         color: Colors.orange,
                                         fontFamily: "Montserrat",
-                                        fontWeight: FontWeight.w800,
+                                        fontWeight: FontWeight.w500,
                                         fontSize: 15),
                                 ),
                               ],
