@@ -5,6 +5,8 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:snacksnmeals/Comman/Util.dart';
 import 'package:snacksnmeals/Comman/string.dart';
 
+import 'LoginPage.dart';
+
 class CreateAccountPage extends StatefulWidget {
   @override
   _CreateAccountPageState createState() => _CreateAccountPageState();
@@ -198,7 +200,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                         ),
                       ),
                       SizedBox(
-                        height: 40,
+                        height: 60,
                       ),
                       Align(
                         alignment: Alignment.bottomCenter,
@@ -209,11 +211,11 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                             height: 45,
                             child: RaisedButton(
                               onPressed: () {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //       builder: (context) => LoginPage()),
-                                // );
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LoginPage()),
+                                );
                                 // FocusScopeNode currentFocus =
                                 // FocusScope.of(context);
                                 // if (!currentFocus.hasPrimaryFocus &&
@@ -240,42 +242,45 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                           ),
                         ),
                       ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: RichText(
-                            text: new TextSpan(
-                              style: new TextStyle(
-                                fontSize: 14.0,
-                                color: Colors.black,
-                              ),
-                              children: <TextSpan>[
-                                new TextSpan(
-                                    text: 'Already have an account?',
-                                    style: new TextStyle(fontSize: 16)),
-                                new TextSpan(
-                                    text: ' Sign in',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.orange),
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () {
-                                        // Single tapped.
-                                        // Navigator.push(
-                                        //   context,
-                                        //   MaterialPageRoute(
-                                        //       builder: (context) =>
-                                        //           LoginPage()),
-                                        // );
-                                      }),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
                     ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: RichText(
+                    text: new TextSpan(
+                      style: new TextStyle(
+                        fontSize: 14.0,
+                        color: Colors.black,
+                      ),
+                      children: <TextSpan>[
+                        new TextSpan(
+                            text: 'Already have an account?',
+                            style: new TextStyle(fontSize: 16)),
+                        new TextSpan(
+                            text: ' Sign in',
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.orange),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                // Single tapped.
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          LoginPage()),
+                                );
+                              }),
+                      ],
+                    ),
                   ),
                 ),
               ),
