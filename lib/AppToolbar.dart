@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 PreferredSize AppToolbar(
-    BuildContext context, String _titleheading, bool _isVisibleBack, bool IsFromForgotorSignup) {
-  bool _isVisible = false;
+    BuildContext context, String _titleheading, bool _isVisibleBack) {
+  bool _isVisible = true;
   bool _IsHomeIconShow = false;
   int selectedindix = 0;
   // if (_titleheading == "Add Party Room") {
@@ -28,99 +28,93 @@ PreferredSize AppToolbar(
   //   _IsHomeIconShow = true;
   // }
   return PreferredSize(
-    preferredSize: Size.fromHeight(95.0),
+    preferredSize: Size.fromHeight(50.0),
     child: AppBar(
-      toolbarHeight: 90,
-      flexibleSpace: Container(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 40, 0, 0),
+      toolbarHeight: 50,
+      flexibleSpace: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 50, 10, 0),
+        child: Container(
           child: Column(children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Container(
-                    height: 35,
-                    child: Visibility(
-                      visible: _isVisibleBack,
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.arrow_back_ios,
-                          color: Colors.black,
+                Row(
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        height: 35,
+                        child: Visibility(
+                          visible: _isVisibleBack,
+                          child: InkWell(
+                            onTap: (){
+                              Navigator.of(context).pop(true);
+                            },
+                            child:  Image.asset(
+                              "assets/ic_back.png",
+                              height: 25, width: 25,
+                            ),
+                          ),
                         ),
-                        onPressed: () {
-                           // Navigator.of(context).pop(true);
-                          // if (IsFromForgotorSignup) {
-                          //   Navigator.of(context).pushAndRemoveUntil(
-                          //       MaterialPageRoute(
-                          //           builder: (BuildContext context) =>
-                          //               LoginPage()),
-                          //           (Route<dynamic> route) => false);
-                          // }
-                          // else {
-                          //   Navigator.of(context).pushAndRemoveUntil(
-                          //       MaterialPageRoute(
-                          //           builder: (BuildContext context) =>
-                          //               HomePages(selectedindix)),
-                          //           (Route<dynamic> route) => false);
-                          // }
-                        },
                       ),
                     ),
-                  ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 5, 5, 5),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          _titleheading,
+                          maxLines: 1,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 18,),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                Visibility(
-                  visible: _isVisible,
-                  child: FlatButton(
-                    onPressed: () {
-                      // if (_titleheading == "Party Room") {
-                      //   Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => AddPartyRoomPage()),
-                      //   );
-                      // } else if (_titleheading == "Service Elevetor") {
-                      //   Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => AddServiceElevetor()),
-                      //   );
-                      // } else if (_IsHomeIconShow) {
-                      //   Navigator.of(context).pushAndRemoveUntil(
-                      //       MaterialPageRoute(
-                      //           builder: (BuildContext context) =>
-                      //               HomePages(selectedindix)),
-                      //       (Route<dynamic> route) => false);
-                      // }
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                      child: Icon(
-                        _IsHomeIconShow ? Icons.home : Icons.add_circle,
-                        color: Colors.black,
-                        size: 35,
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: Visibility(
+                          visible: _isVisible,
+                          child:  InkWell(
+                            onTap: (){
+                              //    Navigator.of(context).pop(true);
+                            },
+                            child:  Image.asset(
+                              "assets/ic_search.png",
+                              height: 15, width: 15,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: Visibility(
+                          visible: _isVisible,
+                          child:  InkWell(
+                            onTap: (){
+                          //    Navigator.of(context).pop(true);
+                            },
+                            child:  Image.asset(
+                              "assets/ic_cart.png",
+                              height: 20, width: 20,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 10, 0, 0),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  _titleheading,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 30,
-                      fontFamily: "Montserrat",
-                      fontWeight: FontWeight.w700),
-                ),
-              ),
             ),
           ]),
         ),

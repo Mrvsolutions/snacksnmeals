@@ -7,6 +7,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:snacksnmeals/Comman/Util.dart';
 import 'package:snacksnmeals/Comman/string.dart';
 import 'package:snacksnmeals/pages/CreateAccountPage.dart';
+import 'package:snacksnmeals/pages/MainHomePage.dart';
 
 import '../BgImage.dart';
 import 'ForgotPasswordPage.dart';
@@ -166,6 +167,12 @@ class _LoginPageState extends State<LoginPage> {
                                   //   signIn(UsernameController.text,
                                   //       PasswordController.text, context);
                                   // }
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            MainHomePage()),
+                                  );
                                 },
                                 child: Text("LOGIN"),
                                 color: Colors.orange,
