@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -47,12 +46,13 @@ PreferredSize AppToolbar(
                         child: Visibility(
                           visible: _isVisibleBack,
                           child: InkWell(
-                            onTap: (){
+                            onTap: () {
                               Navigator.of(context).pop(true);
                             },
-                            child:  Image.asset(
+                            child: Image.asset(
                               "assets/ic_back.png",
-                              height: 25, width: 25,
+                              height: 25,
+                              width: 25,
                             ),
                           ),
                         ),
@@ -67,7 +67,8 @@ PreferredSize AppToolbar(
                           maxLines: 1,
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 18,),
+                            fontSize: 18,
+                          ),
                         ),
                       ),
                     ),
@@ -82,13 +83,14 @@ PreferredSize AppToolbar(
                         alignment: Alignment.centerRight,
                         child: Visibility(
                           visible: _isVisible,
-                          child:  InkWell(
-                            onTap: (){
+                          child: InkWell(
+                            onTap: () {
                               //    Navigator.of(context).pop(true);
                             },
-                            child:  Image.asset(
+                            child: Image.asset(
                               "assets/ic_search.png",
-                              height: 15, width: 15,
+                              height: 15,
+                              width: 15,
                             ),
                           ),
                         ),
@@ -100,13 +102,14 @@ PreferredSize AppToolbar(
                         alignment: Alignment.centerRight,
                         child: Visibility(
                           visible: _isVisible,
-                          child:  InkWell(
-                            onTap: (){
-                          //    Navigator.of(context).pop(true);
+                          child: InkWell(
+                            onTap: () {
+                              //    Navigator.of(context).pop(true);
                             },
-                            child:  Image.asset(
+                            child: Image.asset(
                               "assets/ic_cart.png",
-                              height: 20, width: 20,
+                              height: 20,
+                              width: 20,
                             ),
                           ),
                         ),

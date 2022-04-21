@@ -171,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            MainHomePage()),
+                                            MainHomePage(0)),
                                   );
                                 },
                                 child: Text("LOGIN"),
