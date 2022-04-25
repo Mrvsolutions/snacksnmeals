@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:snacksnmeals/Comman/ColorFile.dart';
 import 'package:snacksnmeals/pages/HomeScreen.dart';
 
 import '../AppToolbar.dart';
@@ -52,37 +53,37 @@ class _MainHomePageState extends State<MainHomePage> {
               "assets/ic_home.png",
               height: 20,
               width: 20,
-              color: Colors.black87,
+              color: BlackColor,
             ),
             Image.asset(
               "assets/ic_notification.png",
               height: 20,
               width: 20,
-              color: Colors.black87,
+              color: BlackColor,
             ),
             Image.asset(
               "assets/ic_cart.png",
               height: 20,
               width: 20,
-              color: Colors.black87,
+              color: BlackColor,
             ),
             // Icon(Icons.call_split, size: 30),
             Image.asset(
               "assets/ic_favorite.png",
               height: 20,
               width: 20,
-              color: Colors.black87,
+              color: BlackColor,
             ),
             Image.asset(
               "assets/ic_profile.png",
               height: 20,
               width: 20,
-              color: Colors.black87,
+              color: BlackColor,
             ),
           ],
-          color: Colors.white,
-          buttonBackgroundColor: Colors.white,
-          backgroundColor: Colors.red,
+          color: WhiteColor,
+          buttonBackgroundColor: WhiteColor,
+          backgroundColor: PageBackground,
           animationCurve: Curves.easeInOut,
           animationDuration: Duration(milliseconds: 200),
           onTap: _onItemTapped,
