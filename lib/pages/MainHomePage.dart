@@ -82,7 +82,7 @@ class _MainHomePageState extends State<MainHomePage> {
             ),
           ],
           color: WhiteColor,
-          buttonBackgroundColor: WhiteColor,
+          buttonBackgroundColor: bgOrangeColor,
           backgroundColor: PageBackground,
           animationCurve: Curves.easeInOut,
           animationDuration: Duration(milliseconds: 200),
