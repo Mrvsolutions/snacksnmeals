@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:snacksnmeals/Comman/ColorFile.dart';
+import 'package:snacksnmeals/pages/MenuPage.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -147,18 +148,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Text(
                         'Popular Foods',
-                        style: TextStyle(color: BlackColor,fontWeight: FontWeight.w400,fontSize: 18),
+                        style: TextStyle(
+                            color: BlackColor,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 18),
                       ),
                       Text(
                         'View All',
-                        style: TextStyle(color: BlackColor,fontSize: 18),
+                        style: TextStyle(color: BlackColor, fontSize: 18),
                       ),
                     ],
                   )
                 ],
               ),
             ),
-
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -171,15 +174,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       childAspectRatio: 0.82,
                     ),
                     itemBuilder: (context, index) => ItemCard(
-                    //  product: products[index],
-                      press: () {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //       builder: (context) => ProductDetailPage(),
-                        //     ));
-                      },
-                    )),
+                          //  product: products[index],
+                          press: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MenuPage(),
+                                ));
+                          },
+                        )),
               ),
             ),
           ],
@@ -195,7 +198,7 @@ class ItemCard extends StatelessWidget {
 
   const ItemCard({
     Key? key,
- //   required this.product,
+    //   required this.product,
     required this.press,
   }) : super(key: key);
 
@@ -204,21 +207,20 @@ class ItemCard extends StatelessWidget {
     return GestureDetector(
       onTap: press,
       child: Card(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
               // For  demo we use fixed height  and width
               // Now we dont need them
-               height: 155,
-               width: MediaQuery.of(context).size.width,
+              height: 155,
+              width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 color: Colors.grey,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child:  Container(
+              child: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
                       fit: BoxFit.cover,
@@ -235,7 +237,9 @@ class ItemCard extends StatelessWidget {
                 // products is out demo list
                 "Popular Food",
                 style: TextStyle(
-                    color: Colors.black,fontSize: 16,),
+                  color: Colors.black,
+                  fontSize: 16,
+                ),
               ),
             ),
             Padding(
@@ -243,7 +247,8 @@ class ItemCard extends StatelessWidget {
               child: Text(
                 "\$ 150",
                 style: TextStyle(
-                    color: Colors.black,fontSize: 20,
+                    color: Colors.black,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold),
               ),
             )
@@ -253,4 +258,3 @@ class ItemCard extends StatelessWidget {
     );
   }
 }
-
