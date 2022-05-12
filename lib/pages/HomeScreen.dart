@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:snacksnmeals/Comman/ColorFile.dart';
 import 'package:snacksnmeals/pages/MenuPage.dart';
+import 'package:snacksnmeals/pages/ProductPage.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -54,6 +55,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: RaisedButton.icon(
                         onPressed: () {
                           print('Button Clicked.');
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProductPage(),
+                              ));
                         },
                         shape: RoundedRectangleBorder(
                             borderRadius:
