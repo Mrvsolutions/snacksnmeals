@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:snacksnmeals/Comman/ColorFile.dart';
 import 'package:snacksnmeals/pages/MenuPage.dart';
+import 'package:snacksnmeals/pages/PopularFoodPage.dart';
 import 'package:snacksnmeals/pages/ProductPage.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -33,6 +34,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: RaisedButton.icon(
                         onPressed: () {
                           print('Button Clicked.');
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProductPage(),
+                              ));
                         },
                         shape: RoundedRectangleBorder(
                             borderRadius:
@@ -82,6 +88,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: RaisedButton.icon(
                         onPressed: () {
                           print('Button Clicked.');
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProductPage(),
+                              ));
                         },
                         shape: RoundedRectangleBorder(
                             borderRadius:
@@ -159,9 +170,18 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontWeight: FontWeight.w400,
                             fontSize: 18),
                       ),
-                      Text(
-                        'View All',
-                        style: TextStyle(color: BlackColor, fontSize: 18),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PopularFoodPage(),
+                              ));
+                        },
+                        child: Text(
+                          'View All',
+                          style: TextStyle(color: BlackColor, fontSize: 18),
+                        ),
                       ),
                     ],
                   )

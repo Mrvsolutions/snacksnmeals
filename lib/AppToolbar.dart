@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:snacksnmeals/pages/ProfilePage.dart';
 
 PreferredSize AppToolbar(
     BuildContext context, String _titleheading, bool _isVisibleBack) {
@@ -105,6 +106,11 @@ PreferredSize AppToolbar(
                           child: InkWell(
                             onTap: () {
                               //    Navigator.of(context).pop(true);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ProfilePage(),
+                                  ));
                             },
                             child: Image.asset(
                               "assets/ic_cart.png",

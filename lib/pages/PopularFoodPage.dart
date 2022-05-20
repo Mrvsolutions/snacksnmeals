@@ -4,15 +4,15 @@ import 'package:snacksnmeals/Comman/ColorFile.dart';
 
 import '../AppToolbar.dart';
 
-class MenuPage extends StatefulWidget {
-  const MenuPage({Key? key}) : super(key: key);
+class PopularFoodPage extends StatefulWidget {
+  const PopularFoodPage({Key? key}) : super(key: key);
 
   @override
-  _MenuPageState createState() => _MenuPageState();
+  _PopularFoodPageState createState() => _PopularFoodPageState();
 }
 
-class _MenuPageState extends State<MenuPage> {
-  late String _titleheading = "Menu";
+class _PopularFoodPageState extends State<PopularFoodPage> {
+  late String _titleheading = "Popular Foods";
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class _MenuPageState extends State<MenuPage> {
                     mainAxisSpacing: 5,
                     crossAxisSpacing: 5,
                     childAspectRatio: 0.82,
-                    mainAxisExtent: 280,
+                    mainAxisExtent: 270,
                   ),
                   itemBuilder: (context, index) => ItemCard(
                         //  product: products[index],
@@ -95,20 +95,21 @@ class ItemCard extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(10, 20, 5, 5),
                   child: Text(
                     // products is out demo list
-                    "Noodles with chicken",
+                    "Food Name",
                     style: TextStyle(
                         color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 5, 5),
                   child: Text(
-                    "Asian noodles with chicken",
+                    "\$ 15.00",
                     style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 12,
+                      color: Colors.black,
+                      fontSize: 14,
+                        fontWeight: FontWeight.w700
                     ),
                   ),
                 ),
@@ -160,30 +161,6 @@ class ItemCard extends StatelessWidget {
                   ),
                 )
               ],
-            ),
-            Align(
-              alignment: Alignment.center,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Container(
-                  margin: EdgeInsets.only(top: 50),
-                  height: 25,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    color: bgOrangeColor,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "\$ 15.0",
-                      style: TextStyle(
-                          color: WhiteColor,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-              ),
             ),
           ],
         ),
