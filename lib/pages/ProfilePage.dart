@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:snacksnmeals/Comman/ColorFile.dart';
+import 'package:snacksnmeals/pages/MyOrderPage.dart';
 
 import '../AppToolbar.dart';
 
@@ -17,7 +18,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppToolbar(context, _titleheading, true),
+        appBar: AppToolbar(context, _titleheading, true, false),
         body: Container(
           color: PageBackground,
           child: Column(
@@ -106,7 +107,6 @@ class _ProfilePageState extends State<ProfilePage> {
                       height: 50,
                       child: RaisedButton(
                         onPressed: () {
-
                         },
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
@@ -134,6 +134,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       height: 50,
                       child: RaisedButton(
                         onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MyOrderPage(),
+                              ));
                         },
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(15 , 0, 15, 0),

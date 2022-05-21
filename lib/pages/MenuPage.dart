@@ -17,7 +17,7 @@ class _MenuPageState extends State<MenuPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppToolbar(context, _titleheading, true),
+      appBar: AppToolbar(context, _titleheading, true, false),
       body: Column(
         children: [
           Expanded(

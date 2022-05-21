@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:snacksnmeals/Comman/ColorFile.dart';
 import 'package:snacksnmeals/pages/HomeScreen.dart';
+import 'package:snacksnmeals/pages/ProfilePage.dart';
 
 import '../AppToolbar.dart';
+import 'FavoriteScreen.dart';
 
 class MainHomePage extends StatefulWidget {
   int _page;
@@ -29,7 +31,7 @@ class _MainHomePageState extends State<MainHomePage> {
     new HomeScreen(),
     new HomeScreen(),
     new HomeScreen(),
-    new HomeScreen(),
+    new FavoriteScreen(),
     new HomeScreen(),
   ];
 
@@ -43,7 +45,7 @@ class _MainHomePageState extends State<MainHomePage> {
   Widget build(BuildContext context) {
     _titleheading = titleList[widget._page];
     return Scaffold(
-        appBar: AppToolbar(context, _titleheading, true),
+        appBar: AppToolbar(context, _titleheading, true, false),
         bottomNavigationBar: CurvedNavigationBar(
           key: _bottomNavigationKey,
           index: widget._page,

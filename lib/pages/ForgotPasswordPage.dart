@@ -39,7 +39,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     return MaterialApp(
       builder: EasyLoading.init(),
       home: Scaffold(
-        appBar: AppToolbar(context, _titleheading, true),
+        appBar: AppToolbar(context, _titleheading, true, false),
         body: SingleChildScrollView(
           child: Container(
             child: Column(

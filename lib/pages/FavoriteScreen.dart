@@ -1,54 +1,59 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:snacksnmeals/Comman/ColorFile.dart';
+import 'package:snacksnmeals/pages/MenuPage.dart';
+import 'package:snacksnmeals/pages/PopularFoodPage.dart';
+import 'package:snacksnmeals/pages/ProductPage.dart';
 
-import '../AppToolbar.dart';
-
-class PopularFoodPage extends StatefulWidget {
-  const PopularFoodPage({Key? key}) : super(key: key);
+class FavoriteScreen extends StatefulWidget {
+  const FavoriteScreen({Key? key}) : super(key: key);
 
   @override
-  _PopularFoodPageState createState() => _PopularFoodPageState();
+  _FavoriteScreenState createState() => _FavoriteScreenState();
 }
 
-class _PopularFoodPageState extends State<PopularFoodPage> {
-  late String _titleheading = "Popular Foods";
-
+class _FavoriteScreenState extends State<FavoriteScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppToolbar(context, _titleheading, true, false),
-      body: Column(
-        children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5),
-              child: GridView.builder(
-                  itemCount: 6,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 5,
-                    crossAxisSpacing: 5,
-                    childAspectRatio: 0.82,
-                    mainAxisExtent: 270,
-                  ),
-                  itemBuilder: (context, index) => ItemCard(
-                        //  product: products[index],
-                        press: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //       builder: (context) => ProductDetailPage(),
-                          //     ));
-                        },
-                      )),
+    return SingleChildScrollView(
+      child: Container(
+        color: PageBackground,
+        height: MediaQuery.of(context).size.height,
+        child: Column(
+          children: [
+            SizedBox(
+              height: 10,
             ),
-          ),
-        ],
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: GridView.builder(
+                    itemCount: 6,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 3,
+                      crossAxisSpacing: 3,
+                      mainAxisExtent: 270,
+                    ),
+                    itemBuilder: (context, index) => ItemCard(
+                          //  product: products[index],
+                          press: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MenuPage(),
+                                ));
+                          },
+                        )),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
+
 
 class ItemCard extends StatelessWidget {
 //  final Product product;
@@ -107,8 +112,8 @@ class ItemCard extends StatelessWidget {
                   child: Text(
                     "\$ 15.00",
                     style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14,
+                        color: Colors.black,
+                        fontSize: 14,
                         fontWeight: FontWeight.w700
                     ),
                   ),

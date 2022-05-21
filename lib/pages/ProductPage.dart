@@ -17,7 +17,7 @@ class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppToolbar(context, _titleheading, true),
+        appBar: AppToolbar(context, _titleheading, true, false),
         body: Container(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
