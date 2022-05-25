@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:snacksnmeals/pages/CartPage.dart';
 import 'package:snacksnmeals/pages/ProfilePage.dart';
 
+import 'Comman/ColorFile.dart';
+
 PreferredSize AppToolbar(
-    BuildContext context, String _titleheading, bool _isVisibleBack) {
+    BuildContext context, String _titleheading, bool _isVisibleBack,bool IsHideAllRightIcon) {
   bool _isVisible = true;
-  bool _IsHomeIconShow = false;
+  bool _IsHideAllRightIcon = false;
   int selectedindix = 0;
   // if (_titleheading == "Add Party Room") {
   //   selectedindix = 1;
@@ -75,53 +78,95 @@ PreferredSize AppToolbar(
                     ),
                   ],
                 ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: Visibility(
-                          visible: _isVisible,
-                          child: InkWell(
-                            onTap: () {
-                              //    Navigator.of(context).pop(true);
-                            },
-                            child: Image.asset(
-                              "assets/ic_search.png",
-                              height: 15,
-                              width: 15,
+                Visibility(
+                  visible: !_IsHideAllRightIcon,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Visibility(
+                            visible: _isVisible,
+                            child: InkWell(
+                              onTap: () {
+                                //    Navigator.of(context).pop(true);
+                              },
+                              child: Image.asset(
+                                "assets/ic_search.png",
+                                height: 15,
+                                width: 15,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: Visibility(
-                          visible: _isVisible,
-                          child: InkWell(
-                            onTap: () {
-                              //    Navigator.of(context).pop(true);
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => ProfilePage(),
-                                  ));
-                            },
-                            child: Image.asset(
-                              "assets/ic_cart.png",
-                              height: 20,
-                              width: 20,
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Visibility(
+                            visible: _isVisible,
+                            child: InkWell(
+                              onTap: () {
+                                   Navigator.of(context).pop(true);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => CartPage(),
+                                    ));
+                              },
+                              child: Image.asset(
+                                "assets/ic_cart.png",
+                                height: 20,
+                                width: 20,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Visibility(
+                            visible: _isVisible,
+                            child: InkWell(
+                              onTap: () {
+                                //    Navigator.of(context).pop(true);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ProfilePage(),
+                                    ));
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                height: 20,
+                                width: 20,
+                                decoration: BoxDecoration(
+                                  color: profilebg,
+                                  borderRadius: BorderRadius.circular(50),
+                                ),
+                                child: Container(
+                                  margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        fit: BoxFit.contain,
+                                        image: AssetImage("assets/user_profile.png")),
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(50.0),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

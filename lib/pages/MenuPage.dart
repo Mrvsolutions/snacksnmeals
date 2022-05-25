@@ -13,7 +13,7 @@ class MenuPage extends StatefulWidget {
 
 class _MenuPageState extends State<MenuPage> {
   late String _titleheading = "Menu";
-
+  final List<String> _list = ['assets/image6.jpeg', 'assets/image2.jpeg','assets/image5.jpeg','assets/image4.jpeg','assets/image1.jpeg', 'assets/food_img.jpeg'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +24,7 @@ class _MenuPageState extends State<MenuPage> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5),
               child: GridView.builder(
-                  itemCount: 6,
+                  itemCount: _list.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     mainAxisSpacing: 5,
@@ -33,7 +33,7 @@ class _MenuPageState extends State<MenuPage> {
                     mainAxisExtent: 280,
                   ),
                   itemBuilder: (context, index) => ItemCard(
-                        //  product: products[index],
+                          product: _list[index],
                         press: () {
                           // Navigator.push(
                           //     context,
@@ -51,12 +51,12 @@ class _MenuPageState extends State<MenuPage> {
 }
 
 class ItemCard extends StatelessWidget {
-//  final Product product;
+  final String product;
   final void Function() press;
 
   const ItemCard({
     Key? key,
-    //   required this.product,
+       required this.product,
     required this.press,
   }) : super(key: key);
 
@@ -84,7 +84,7 @@ class ItemCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage('assets/food_img.jpeg')),
+                          image: AssetImage(product)),
                       borderRadius: BorderRadius.all(
                         Radius.circular(20.0),
                       ),

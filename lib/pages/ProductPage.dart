@@ -13,6 +13,7 @@ class ProductPage extends StatefulWidget {
 
 class _ProductPageState extends State<ProductPage> {
   late String _titleheading = "Juice";
+  final List<String> _list = ['assets/juice1.png', 'assets/juice2.png','assets/juice3.jpg','assets/juice4.jpeg','assets/juice5.png', 'assets/juice6.png'];
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +26,16 @@ class _ProductPageState extends State<ProductPage> {
               itemBuilder: (BuildContext context, int index) {
                 //  var Announcementlst = _listannmnt[index];
                 return GestureDetector(
-                    child: ProductListItem(context), onTap: () {});
+                    child: ProductListItem(context,_list[index]), onTap: () {});
               },
-              itemCount: 10,
+              itemCount: _list.length,
             ),
           ),
         ));
   }
 }
 
-Container ProductListItem(BuildContext context) {
+Container ProductListItem(BuildContext context,String strimage) {
   return Container(
     height: 150,
     child: Padding(
@@ -56,9 +57,10 @@ Container ProductListItem(BuildContext context) {
                   ),
                   child: Container(
                     decoration: BoxDecoration(
+                      color: Colors.white,
                       image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage('assets/food_img.jpeg')),
+                          image: AssetImage(strimage)),
                       borderRadius: BorderRadius.all(
                         Radius.circular(20.0),
                       ),
@@ -72,7 +74,7 @@ Container ProductListItem(BuildContext context) {
                       padding: const EdgeInsets.fromLTRB(10, 15, 5, 5),
                       child: Text(
                         // products is out demo list
-                        "Noodles with chicken",
+                        "Fresh Juice",
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 16,
@@ -82,7 +84,7 @@ Container ProductListItem(BuildContext context) {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 0, 5, 5),
                       child: Text(
-                        "Asian noodles with chicken",
+                        "Mixed Fruits",
                         style: TextStyle(
                           color: Colors.grey,
                           fontSize: 12,

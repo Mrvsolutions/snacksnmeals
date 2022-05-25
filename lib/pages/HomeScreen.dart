@@ -13,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final List<String> _list = [ 'assets/food_img.jpeg',  'assets/image1.jpeg', 'assets/image2.jpeg','assets/image3.jpeg','assets/image4.jpeg','assets/image5.jpeg'];
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -125,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage('assets/food_img.jpeg')),
+                          image: AssetImage('assets/baner1.jpeg')),
                       borderRadius: BorderRadius.all(
                         Radius.circular(20.0),
                       ),
@@ -192,7 +193,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: GridView.builder(
-                    itemCount: 6,
+                    itemCount: _list.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       mainAxisSpacing: 3,
@@ -200,7 +201,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       childAspectRatio: 0.82,
                     ),
                     itemBuilder: (context, index) => ItemCard(
-                          //  product: products[index],
+                            product: _list[index],
                           press: () {
                             Navigator.push(
                                 context,
@@ -219,12 +220,13 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class ItemCard extends StatelessWidget {
-//  final Product product;
+  final String product;
   final void Function() press;
+
 
   const ItemCard({
     Key? key,
-    //   required this.product,
+       required this.product,
     required this.press,
   }) : super(key: key);
 
@@ -250,7 +252,7 @@ class ItemCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage('assets/food_img.jpeg')),
+                      image: AssetImage(product)),
                   borderRadius: BorderRadius.all(
                     Radius.circular(20.0),
                   ),

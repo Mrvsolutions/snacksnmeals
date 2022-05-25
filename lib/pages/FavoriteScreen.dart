@@ -13,7 +13,9 @@ class FavoriteScreen extends StatefulWidget {
 }
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
-  @override
+  final List<String> _list = ['assets/f1.jpeg', 'assets/image1.jpeg','assets/juice4.jpeg','assets/f4.jpeg','assets/image2.jpeg', 'assets/image5.jpeg'];
+
+@override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
@@ -28,7 +30,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: GridView.builder(
-                    itemCount: 6,
+                    itemCount: _list.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       mainAxisSpacing: 3,
@@ -36,7 +38,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                       mainAxisExtent: 270,
                     ),
                     itemBuilder: (context, index) => ItemCard(
-                          //  product: products[index],
+                            product: _list[index],
                           press: () {
                             Navigator.push(
                                 context,
@@ -56,12 +58,12 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
 
 
 class ItemCard extends StatelessWidget {
-//  final Product product;
+  final String product;
   final void Function() press;
 
   const ItemCard({
     Key? key,
-    //   required this.product,
+      required this.product,
     required this.press,
   }) : super(key: key);
 
@@ -89,7 +91,7 @@ class ItemCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage('assets/food_img.jpeg')),
+                          image: AssetImage(product)),
                       borderRadius: BorderRadius.all(
                         Radius.circular(20.0),
                       ),
