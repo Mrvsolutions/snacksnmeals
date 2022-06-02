@@ -31,9 +31,9 @@ PreferredSize AppToolbar(
   //   _IsHomeIconShow = true;
   // }
   return PreferredSize(
-    preferredSize: Size.fromHeight(50.0),
+    preferredSize: Size.fromHeight(80.0),
     child: AppBar(
-      toolbarHeight: 50,
+      toolbarHeight: 80,
       flexibleSpace: Padding(
         padding: const EdgeInsets.fromLTRB(10, 50, 10, 0),
         child: Container(
