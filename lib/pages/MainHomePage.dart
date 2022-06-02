@@ -7,6 +7,7 @@ import 'package:snacksnmeals/pages/ProfilePage.dart';
 
 import '../AppToolbar.dart';
 import 'FavoriteScreen.dart';
+import 'NotificationScreen.dart';
 
 class MainHomePage extends StatefulWidget {
   int _page;
@@ -29,7 +30,7 @@ class _MainHomePageState extends State<MainHomePage> {
   late String _titleheading;
   final _widgetOptions = [
     new HomeScreen(),
-    new HomeScreen(),
+    new NotificationScreen(),
     new HomeScreen(),
     new FavoriteScreen(),
     new HomeScreen(),

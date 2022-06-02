@@ -35,7 +35,7 @@ class _ProductPageState extends State<ProductPage> {
   }
 }
 
-Container ProductListItem(BuildContext context,String strimage) {
+Container ProductListItem(BuildContext context, String strimage) {
   return Container(
     height: 150,
     child: Padding(
@@ -59,8 +59,7 @@ Container ProductListItem(BuildContext context,String strimage) {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage(strimage)),
+                          fit: BoxFit.cover, image: AssetImage(strimage)),
                       borderRadius: BorderRadius.all(
                         Radius.circular(20.0),
                       ),
