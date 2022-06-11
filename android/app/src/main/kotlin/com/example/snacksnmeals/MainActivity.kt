@@ -1,4 +1,4 @@
-package com.example.snacksnmeals
+package mrv.solutions.snacksnmeals
 
 import io.flutter.embedding.android.FlutterActivity
 

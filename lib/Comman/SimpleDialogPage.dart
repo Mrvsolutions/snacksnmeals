@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:snacksnmeals/pages/LoginPage.dart';
 
 class SimpleDialogPage extends StatelessWidget {
   final title;
@@ -24,9 +25,9 @@ class SimpleDialogPage extends StatelessWidget {
                   color: Colors.blue)),
           onPressed: () {
 
-            // Navigator.of(context).pushAndRemoveUntil(
-            //     MaterialPageRoute(builder: (BuildContext context) => LoginPage()),
-            //         (Route<dynamic> route) => false);
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (BuildContext context) => LoginPage()),
+                    (Route<dynamic> route) => false);
           },
         ),
       ],

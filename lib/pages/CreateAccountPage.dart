@@ -1,11 +1,17 @@
+import 'dart:convert';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:snacksnmeals/Comman/Util.dart';
 import 'package:snacksnmeals/Comman/string.dart';
+import 'package:http/http.dart' as http;
+import 'package:snacksnmeals/api/api.dart';
 
 import 'LoginPage.dart';
+import 'VerifyEmailPage.dart';
 
 class CreateAccountPage extends StatefulWidget {
   @override
@@ -18,12 +24,11 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
   RegExp regepassword =
       RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
-  TextEditingController _aptNoController = new TextEditingController();
+
   TextEditingController _nameController = new TextEditingController();
+  TextEditingController _cityController = new TextEditingController();
   TextEditingController _emailController = new TextEditingController();
   TextEditingController _contactController = new TextEditingController();
-  TextEditingController _applicationCodeController =
-      new TextEditingController();
   TextEditingController _passwordController = new TextEditingController();
   TextEditingController _cnfPassController = new TextEditingController();
 
@@ -64,13 +69,13 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                             "Welcome to \nGood Meals",
                             style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 30,
+                                fontSize: 25,
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
                       SizedBox(
-                        height: 30,
+                        height: 10,
                       ),
                       Align(
                         alignment: Alignment.topLeft,
@@ -116,6 +121,30 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                             TextFormField(
                               cursorColor: Colors.orange,
                               autovalidateMode:
+                              AutovalidateMode.onUserInteraction,
+                              validator: (String? value) {
+                                if (value != null) {
+                                  if (value.isEmpty) {
+                                    return StrEnterCity;
+                                  }
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                focusColor: Colors.orange,
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.orange),
+                                ),
+                                hintText: "Enter City",
+                                labelText: "City",),
+                              controller: _cityController,
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            TextFormField(
+                              cursorColor: Colors.orange,
+                              autovalidateMode:
                                   AutovalidateMode.onUserInteraction,
                               validator: (String? value) {
                                 if (value != null) {
@@ -128,6 +157,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                                 }
                                 return null;
                               },
+                              keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
                                   focusColor: Colors.orange,
                                   focusedBorder: UnderlineInputBorder(
@@ -138,7 +168,33 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                               controller: _emailController,
                             ),
                             SizedBox(
-                              height: 30,
+                              height: 20,
+                            ),
+                            TextFormField(
+                              cursorColor: Colors.orange,
+                              autovalidateMode:
+                              AutovalidateMode.onUserInteraction,
+                              maxLength: 10,
+                              validator: (String? value) {
+                                if (value != null) {
+                                  if (value.isEmpty) {
+                                    return StrEnterMobile;
+                                  }
+                                }
+                                return null;
+                              },
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                  focusColor: Colors.orange,
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.orange),
+                                  ),
+                                  hintText: "Enter Mobile Number",
+                                  labelText: "Mobile"),
+                              controller: _contactController,
+                            ),
+                            SizedBox(
+                              height: 20,
                             ),
                             TextFormField(
                               cursorColor: Colors.orange,
@@ -166,7 +222,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                               obscureText: true,
                             ),
                             SizedBox(
-                              height: 30,
+                              height: 20,
                             ),
                             TextFormField(
                               cursorColor: Colors.orange,
@@ -222,15 +278,15 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                                 //     currentFocus.focusedChild != null) {
                                 //   currentFocus.focusedChild.unfocus();
                                 // }
-                                // if (SignupValidation()) {
-                                //   // Signup(
-                                //   //     _aptNoController.text,
-                                //   //     _nameController.text,
-                                //   //     _contactController.text,
-                                //   //     _applicationCodeController.text,
-                                //   //     _emailController.text,
-                                //   //     _passwordController.text);
-                                // }
+                                if (SignupValidation()) {
+                                  Signup(
+                                      StrRestaruntId,
+                                      _nameController.text,
+                                      _cityController.text,
+                                      _emailController.text,
+                                      _passwordController.text,
+                                    _contactController.text);
+                                }
                               },
                               child: Text("SIGN UP"),
                               color: Colors.orange,
@@ -298,6 +354,14 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         EasyLoadingToastMessage(context, StrEnterName);
         return false;
       }
+      if (_cityController.text.isEmpty) {
+        EasyLoadingToastMessage(context, StrEnterCity);
+        return false;
+      }
+      if (_contactController.text.isEmpty || _contactController.text.length < 10) {
+        EasyLoadingToastMessage(context, StrEnterMobile);
+        return false;
+      }
       if (_emailController.text.isEmpty) {
         EasyLoadingToastMessage(context, StrEnterEmailId);
         return false;
@@ -330,5 +394,61 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
       return false;
     }
     return true;
+  }
+  void Signup(String restaurant_id, String cust_name, String cust_city,
+       String cust_email, String cust_pswd,String cust_mobileno) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    // setState(() {
+    //   _isLoading = true;
+    // });
+    EasyLoading.show(status: 'Please Wait...');
+    Map data = {
+      'restaurant_id': restaurant_id,
+      'cust_name': cust_name,
+      'cust_city': cust_city,
+      'cust_email': cust_email,
+      'cust_pswd': cust_pswd,
+      'cust_mobileno': cust_mobileno
+    };
+    print(data.toString());
+    var jsonResponse = null;
+    var url = Uri.parse(RegistrationsAPI);
+    http.Response response = await http.post(
+      url,
+      body: data,
+      headers: {
+        // "Accept": "application/json",
+        // "Content-Type": "application/x-www-form-urlencoded"
+        "Accept": "application/json",
+      },
+    );
+
+    if (response.statusCode == 200) {
+      // jsonResponse = json.decode(response.body);
+      Map<String, dynamic> jsonResponse = jsonDecode(response.body);
+      if (jsonResponse != null) {
+        // setState(() {
+        //   _isLoading = false;
+        // });
+        EasyLoading.dismiss();
+        sharedPreferences.setString("message", jsonResponse['message']);
+        if (jsonResponse['success'] == 1) {
+          sharedPreferences.setString("message", "Signup");
+          EasyLoadingToastMessage(context, jsonResponse['message']);
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                  builder: (BuildContext context) => VerifyEmailPage(cust_email)),
+                  (Route<dynamic> route) => false);
+        } else {
+          EasyLoadingToastMessage(context, jsonResponse['message']);
+        }
+      }
+    } else {
+      // setState(() {
+      //   _isLoading = false;
+      // });
+      EasyLoading.dismiss();
+      print(response.body);
+    }
   }
 }
