@@ -4,11 +4,13 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:snacksnmeals/Comman/Util.dart';
 import 'package:snacksnmeals/Comman/string.dart';
+import 'package:snacksnmeals/api/api.dart';
 import 'package:snacksnmeals/pages/CreateAccountPage.dart';
 import 'package:snacksnmeals/pages/MainHomePage.dart';
-
+import 'package:http/http.dart' as http;
 import '../BgImage.dart';
 import 'ForgotPasswordPage.dart';
 
@@ -159,20 +161,14 @@ class _LoginPageState extends State<LoginPage> {
                               height: 55,
                               child: RaisedButton(
                                 onPressed: () {
-                                  // FocusScopeNode currentFocus = FocusScope.of(context);
-                                  // if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
-                                  //   currentFocus.focusedChild.unfocus();
-                                  // }
-                                  // if (SignInValidation()) {
-                                  //   signIn(UsernameController.text,
-                                  //       PasswordController.text, context);
-                                  // }
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            MainHomePage(0)),
-                                  );
+                                  FocusScopeNode currentFocus = FocusScope.of(context);
+                                  if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+                                    currentFocus.focusedChild!.unfocus();
+                                  }
+                                  if (SignInValidation()) {
+                                    signIn(UsernameController.text,
+                                        PasswordController.text, context);
+                                  }
                                 },
                                 child: Text("LOGIN"),
                                 color: Colors.orange,
@@ -254,5 +250,53 @@ class _LoginPageState extends State<LoginPage> {
       return false;
     }
     return true;
+  }
+
+  signIn(String email, String pass, BuildContext context) async {
+
+    setState(() {
+      // _isLoading = true;
+      EasyLoading.show(status: 'Please Wait...');
+    });
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    Map data = {'resident_email': email, 'ru_pswd': pass};
+    var jsonResponse = null;
+    var url = Uri.parse(LoginAPI);
+    var response = await http.post(url, body: data);
+    if (response.statusCode == 200) {
+      jsonResponse = json.decode(response.body);
+      if (jsonResponse != null) {
+        // setState(() {
+        //   // _isLoading = false;
+        EasyLoading.dismiss();
+        // });
+        if (jsonResponse['success'] == 1) {
+          //var _userProfile = new List<UserProfile>();
+          sharedPreferences.setString("message", LOGIN_COMPLETE);
+          // sharedPreferences.setString(Auth_Token, _Auth_Token);
+          EasyLoadingToastMessage(context, jsonResponse['message']);
+          //List userdata = jsonResponse['userdata'];
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    MainHomePage(0)),
+          );
+        //  EasyLoading.show(status: 'Please Wait...');
+         // SetTokenAPI(_userProfile[0].residence_user_id,_Auth_Token,_userProfile[0].chng_pswd_rqst,context);
+          // _userProfile = userdata
+          //     .map((model) => UserProfile.fromJson(model))
+          //     .toList();
+        } else {
+          EasyLoadingToastMessage(context, jsonResponse['message']);
+        }
+      }
+    } else {
+      setState(() {
+        // _isLoading = false;
+        EasyLoading.dismiss();
+      });
+      print(response.body);
+    }
   }
 }

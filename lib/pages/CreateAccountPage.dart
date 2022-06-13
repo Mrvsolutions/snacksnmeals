@@ -267,11 +267,6 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                             height: 45,
                             child: RaisedButton(
                               onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LoginPage()),
-                                );
                                 // FocusScopeNode currentFocus =
                                 // FocusScope.of(context);
                                 // if (!currentFocus.hasPrimaryFocus &&
