@@ -1,7 +1,10 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:snacksnmeals/BgImage.dart';
 import 'package:snacksnmeals/pages/CreateAccountPage.dart';
+
+import 'LoginPage.dart';
 
 class SignupMainPage extends StatefulWidget {
   _SignupMainPageState createState() => _SignupMainPageState();
@@ -124,6 +127,16 @@ class _SignupMainPageState extends State<SignupMainPage> {
                                         fontFamily: "Montserrat",
                                         fontWeight: FontWeight.w500,
                                         fontSize: 15),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        // Single tapped.
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  LoginPage()),
+                                        );
+                                      }
                                 ),
                               ],
                             ),

@@ -259,7 +259,7 @@ class _LoginPageState extends State<LoginPage> {
       EasyLoading.show(status: 'Please Wait...');
     });
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    Map data = {'resident_email': email, 'ru_pswd': pass};
+    Map data = {'restaurant_id':StrRestaruntId,'cust_email': email, 'cust_pswd': pass};
     var jsonResponse = null;
     var url = Uri.parse(LoginAPI);
     var response = await http.post(url, body: data);
