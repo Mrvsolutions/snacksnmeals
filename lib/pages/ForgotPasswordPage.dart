@@ -5,9 +5,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:snacksnmeals/Comman/ForgotDialogPage.dart';
 import 'package:snacksnmeals/Comman/string.dart';
+import 'package:snacksnmeals/api/api.dart';
 
 import '../AppToolbar.dart';
-// import 'package:http/http.dart' as http;
+import 'package:http/http.dart' as http;
 
 class ForgotPasswordPage extends StatefulWidget {
   @override
@@ -137,34 +138,33 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
   void EditProfileRequest(StrEmail) async {
     EasyLoading.show(status: 'Please Wait...');
-    // Map data = {
-    //   // 'residence_user_id': UserID,
-    //   // 'resident_name': username,
-    //   'resident_email': StrEmail,
-    // };
-    // print(data.toString());
-    // var url = Uri.parse(ForgotPassWordAPI);
-    // http.Response response = await http.post(
-    //   url,
-    //   body: data,
-    //   headers: {
-    //     "Accept": "application/json",
-    //   },
-    // );
+    Map data = {
+       'restaurant_id': StrRestaruntId,
+      'cust_email': StrEmail,
+    };
+    print(data.toString());
+    var url = Uri.parse(ForgotPassWordAPI);
+    http.Response response = await http.post(
+      url,
+      body: data,
+      headers: {
+        "Accept": "application/json",
+      },
+    );
 
-   // if (response.statusCode == 200) {
-  //    Map<String, dynamic> jsonResponse = jsonDecode(response.body);
-  //    if (jsonResponse != null) {
+   if (response.statusCode == 200) {
+     Map<String, dynamic> jsonResponse = jsonDecode(response.body);
+     if (jsonResponse != null) {
         EasyLoading.dismiss();
         showDialog(
             context: context,
             builder: (BuildContext context) {
               return ForgotDialogPage(StrEmail);
             });
-   //   }
- //   } else {
-  //    EasyLoading.dismiss();
- //     print(response.body);
- //   }
+     }
+   } else {
+     EasyLoading.dismiss();
+     print(response.body);
+   }
   }
 }

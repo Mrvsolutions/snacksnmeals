@@ -16,3 +16,4 @@ const String VERIFICATION_PENDING= "Verification pending";
 const String VERIFICATION_COMPLETE= "Verification Complete";
 const String StrSignupVerificaionMessage = "Please Contact to Admin to Verify your data. \nThank you.!";
 const String LOGIN_COMPLETE= "Login Complete";
+const String Register_UserID= "Register_UserID";
