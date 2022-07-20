@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:snacksnmeals/Comman/Util.dart';
 import 'package:snacksnmeals/Comman/string.dart';
 import 'package:snacksnmeals/api/api.dart';
+import 'package:snacksnmeals/model/UserProfile.dart';
 import 'package:snacksnmeals/pages/CreateAccountPage.dart';
 import 'package:snacksnmeals/pages/MainHomePage.dart';
 import 'package:http/http.dart' as http;
@@ -271,22 +272,32 @@ class _LoginPageState extends State<LoginPage> {
         EasyLoading.dismiss();
         // });
         if (jsonResponse['success'] == 1) {
-          //var _userProfile = new List<UserProfile>();
+          var _userProfile = <UserProfile>[];
           sharedPreferences.setString("message", LOGIN_COMPLETE);
           // sharedPreferences.setString(Auth_Token, _Auth_Token);
           EasyLoadingToastMessage(context, jsonResponse['message']);
-          //List userdata = jsonResponse['userdata'];
+          List userdata = jsonResponse['userdata'];
+          _userProfile = userdata
+              .map((model) => UserProfile.fromJson(model))
+              .toList();
+          print("_userProfile:- "+_userProfile.toString());
+          sharedPreferences.setString(Cust_ID, _userProfile[0].cust_id);
+          sharedPreferences.setString(Restaurant_ID, _userProfile[0].restaurant_id);
+          sharedPreferences.setString(StrUserName,_userProfile[0].cust_name);
+          sharedPreferences.setString(StrUserEmail, _userProfile[0].cust_email);
+          sharedPreferences.setString(StrContactNumber, _userProfile[0].cust_mobileno);
+          sharedPreferences.setString(Strru_profile_pic, _userProfile[0].cust_profile_pic);
+          String msg = jsonResponse['message']+", cust_id:"+_userProfile[0].cust_id+", Name: "+_userProfile[0].cust_name+","
+              " restaurant_id: "+_userProfile[0].restaurant_id+", USER_Contanct: "+_userProfile[0].cust_mobileno;
+
           Navigator.push(
             context,
             MaterialPageRoute(
                 builder: (context) =>
                     MainHomePage(0)),
           );
-        //  EasyLoading.show(status: 'Please Wait...');
-         // SetTokenAPI(_userProfile[0].residence_user_id,_Auth_Token,_userProfile[0].chng_pswd_rqst,context);
-          // _userProfile = userdata
-          //     .map((model) => UserProfile.fromJson(model))
-          //     .toList();
+          //  EasyLoading.show(status: 'Please Wait...');
+          // SetTokenAPI(_userProfile[0].residence_user_id,_Auth_Token,_userProfile[0].chng_pswd_rqst,context);
         } else {
           EasyLoadingToastMessage(context, jsonResponse['message']);
         }

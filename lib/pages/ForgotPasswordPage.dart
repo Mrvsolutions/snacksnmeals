@@ -109,7 +109,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       onPressed: () {
                         if (_emailController.text.isNotEmpty) {
                           FocusManager.instance.primaryFocus?.unfocus();
-                          EditProfileRequest(_emailController.text);
+                          FogotPasswordRequest(_emailController.text);
                         }
                       },
                       child: Text(
@@ -136,7 +136,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     );
   }
 
-  void EditProfileRequest(StrEmail) async {
+  void FogotPasswordRequest(StrEmail) async {
     EasyLoading.show(status: 'Please Wait...');
     Map data = {
        'restaurant_id': StrRestaruntId,

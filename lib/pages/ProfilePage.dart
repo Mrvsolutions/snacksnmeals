@@ -1,6 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:snacksnmeals/Comman/ColorFile.dart';
+import 'package:snacksnmeals/Comman/string.dart';
 import 'package:snacksnmeals/pages/MyOrderPage.dart';
 
 import '../AppToolbar.dart';
@@ -14,7 +19,84 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   late String _titleheading = "Profile";
+  late File _image;
+  late String Uploaded_pimgUrl;
+  // TextEditingController _dateController = TextEditingController();
+  TextEditingController _nameController = new TextEditingController();
+  TextEditingController _emailController = new TextEditingController();
+  TextEditingController _contactController = new TextEditingController();
+  final ImagePicker _picker = ImagePicker();
+  @override
+  void initState() {
+    //_dateController.text = formatDate(DateTime.now(), [dd, '/', mm, '/', yyyy]);
+    super.initState();
+        () async {
+      await GetSharePrefrenceValue();
+      setState(() {
+      });
+    } ();
 
+  }
+  Future GetSharePrefrenceValue() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+   _nameController.text = preferences.getString(StrUserName)?? "";
+   _emailController.text = preferences.getString(StrUserEmail)?? "";
+   Uploaded_pimgUrl = preferences.getString(Strru_profile_pic)?? "";
+   _contactController.text = preferences.getString(StrContactNumber)?? "";
+       // _UserID = preferences.getString(Register_UserID);
+       //  _Apart_No = preferences.getString(Strapt_no);
+  }
+
+  _imgFromCamera() async {
+    //  File image = await ImagePicker.pickImage(source: ImageSource.camera);
+    PickedFile? pickedFile = await _picker.getImage(source: ImageSource.camera);
+    final File image = File(pickedFile!.path);
+
+    setState(() {
+      _image = image;
+     // UploadProfilePicRequest();
+    });
+  }
+
+  _imgFromGallery() async {
+    //  File image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    PickedFile? pickedFile = await _picker.getImage(source: ImageSource.gallery);
+    final File image = File(pickedFile!.path);
+    setState(() {
+      _image = image;
+     // UploadProfilePicRequest();
+    });
+  }
+  void _showPicker(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return SafeArea(
+            child: Container(
+              child: new Wrap(
+                children: <Widget>[
+                  new ListTile(
+                      leading: new Icon(Icons.photo_library),
+                      title: new Text('Photo Library'),
+                      onTap: () {
+                        _imgFromGallery();
+                        Navigator.of(context).pop();
+                      }),
+                  new ListTile(
+                    leading: new Icon(Icons.photo_camera),
+                    title: new Text('Camera'),
+                    onTap: () {
+                      _imgFromCamera();
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +132,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               Text(
                 // products is out demo list
-                "User Name",
+                _nameController.text,
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
@@ -63,7 +145,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 alignment: Alignment.center,
                 child: Text(
                   // products is out demo list
-                  "1639 Pride Avenue, Queens \nNew York.",
+                  // "1639 Pride Avenue, Queens \nNew York.",
+                  _emailController.text,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.grey,

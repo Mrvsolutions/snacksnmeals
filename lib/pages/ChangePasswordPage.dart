@@ -186,7 +186,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
 
   void ChangePasswordRequest(String oldPass, String password) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    var _UserID = sharedPreferences.getString(Register_UserID);
+    var _UserID = sharedPreferences.getString(Cust_ID);
     EasyLoading.show(status: 'Please Wait...');
     Map data = {
       'restaurant_id': StrRestaruntId,
