@@ -6,3 +6,4 @@ const String VerifyEmailCodeAPI="$ROOT/signupVerifyCode.php";
 const String ResendVerificationCodeAPI="$ROOT/resendVerificationCode.php";
 const String ForgotPassWordAPI="$ROOT/forgotPswd.php";
 const String ChangePasswordAPI="$ROOT/changePswd.php";
+const String FavouriteAPI="$ROOT/viewFavourite.php";

@@ -46,7 +46,7 @@ class _MainHomePageState extends State<MainHomePage> {
   Widget build(BuildContext context) {
     _titleheading = titleList[widget._page];
     return Scaffold(
-        appBar: AppToolbar(context, _titleheading, true, false),
+        appBar: AppToolbar(context, _titleheading, false, false),
         bottomNavigationBar: CurvedNavigationBar(
           key: _bottomNavigationKey,
           index: widget._page,

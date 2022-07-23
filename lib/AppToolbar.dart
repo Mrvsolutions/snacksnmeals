@@ -110,7 +110,7 @@ PreferredSize AppToolbar(
                             visible: _isVisible,
                             child: InkWell(
                               onTap: () {
-                                   Navigator.of(context).pop(true);
+                               //    Navigator.of(context).pop(true);
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
